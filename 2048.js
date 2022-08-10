@@ -211,7 +211,7 @@ function setTwo() {
             tile.classList.add("x2");
             found = true;
         }
-    }
+    }``
 }
 
 

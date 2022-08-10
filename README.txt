@@ -1,0 +1,1 @@
+A classic game play by arrow keys. By slideing and merging tiles with identical numbers to achieve 2048 tile as soon as possible.
