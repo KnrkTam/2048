@@ -7,9 +7,8 @@ window.onload = function() {
     setGame();
     let restartBtn = document.getElementById('restart-btn');
     restartBtn.addEventListener("click", (e)=> {
-    restart();
-})
-
+        restart();
+    })
 }
 
 function setGame() {
