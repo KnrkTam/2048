@@ -125,11 +125,13 @@ hr {
     z-index: 50000000;
 }
 
-#restart-btn:hover,
-#restart-btn:after {
-
+#restart-btn:hover{
     background-color: #1A936F;
 }
+/* .restart-btn{
+    background-color: #4caf50;
+} */
+
 
 .dot {
     width: 4rem;

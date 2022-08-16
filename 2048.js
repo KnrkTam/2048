@@ -5,18 +5,26 @@ let columns = 4;
 
 window.onload = function() {
     setGame();
-    let restartBtn = document.getElementById('restart-btn');
+    const restartBtn = document.getElementById('restart-btn');
     restartBtn.addEventListener("click", (e)=> {
         restart();
     })
 
+    restartBtn.addEventListener("touchend", (e)=> {
+        // console.log('end')
+        // document.body.focus();
+        restartBtn.style.backgroundColor = "4caf50";
+
+        // restartBtn.classList.add("restart-btn");
+    })
+
     const paper = document.getElementById("paper");
-        paper.addEventListener("touchstart"  , (e)=> { 
-            e.preventDefault();
-        })
-        paper.addEventListener("touchmove"  , (e)=> { 
-            e.preventDefault();
-        })
+    paper.addEventListener("touchstart"  , (e)=> { 
+        e.preventDefault();
+    })
+    paper.addEventListener("touchmove"  , (e)=> { 
+        e.preventDefault();
+    })
 }
 
 function setGame() {
@@ -101,6 +109,8 @@ document.addEventListener("keyup", (e)=> {
 
 let startY;
 let startX;
+let yIndex;
+let xIndex;
 
 document.addEventListener("touchstart", (e)=> {
     // Press one at a time
@@ -135,7 +145,7 @@ document.addEventListener("touchend", (e) =>{
     ;[...e.changedTouches ].forEach(touch => {
         const dot = document.getElementById(touch.identifier)
         dot.remove()
-
+        
         if (Math.abs(yIndex) <  5 && Math.abs(xIndex) < 5) return;
         if (Math.abs(yIndex)> Math.abs(xIndex)) {
             if (yIndex < 0) {
