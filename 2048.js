@@ -158,6 +158,8 @@ document.addEventListener("touchend", (e) =>{
                 setTwo();
             }        
         }
+        yIndex = null;
+        xIndex = null;
         document.getElementById("score").innerHTML = score
     })
 })
