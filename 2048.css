@@ -1,11 +1,13 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    height: 2000px;
 }
 
 hr {
     width: 500px;
 }
+
 
 #board {
     width: 400px;
@@ -109,8 +111,20 @@ hr {
     margin-top:20px;
     font-size: large;
     padding: 1rem 2rem;
+    z-index: 50000000;
 }
 
-#restart-btn:hover {
+#restart-btn:hover,
+#restart-btn:after {
+
     background-color: #1A936F;
+}
+
+.dot {
+    background-color: red;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
 }

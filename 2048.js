@@ -9,6 +9,12 @@ window.onload = function() {
     restartBtn.addEventListener("click", (e)=> {
         restart();
     })
+
+    const paper = document.getElementById("paper");
+        paper.addEventListener("touchstart"  , (e)=> { 
+            e.preventDefault();
+            // console.log("Target", e.targetTouches.length)
+        })
 }
 
 function setGame() {
@@ -87,10 +93,72 @@ document.addEventListener("keyup", (e)=> {
 
             break;
     }
-
     document.getElementById("score").innerHTML = score
 
 }) 
+
+let startY;
+let startX;
+
+document.addEventListener("touchstart", (e)=> {
+    // Press one at a time
+    // console.log(e)
+    [...e.changedTouches ].forEach(touch => {
+        const dot = document.createElement("div")
+        dot.classList.add("dot")
+        startY = touch.pageY;
+        startX = touch.pageX;
+
+        dot.style.top = `${touch.pageY}px`;
+        dot.style.left = `${touch.pageX}px`;
+        dot.id = touch.identifier;
+        document.body.append(dot)
+    })
+}) 
+
+document.addEventListener("touchmove",(e) =>{
+    ;[...e.changedTouches ].forEach(touch => {
+        const dot = document.getElementById(touch.identifier)
+        dot.style.top = `${touch.pageY}px`;
+        dot.style.left = `${touch.pageX}px`;
+        yIndex = startY - touch.pageY;
+        xIndex = startX - touch.pageX;
+       
+
+    })
+})
+
+
+document.addEventListener("touchend", (e) =>{
+    ;[...e.changedTouches ].forEach(touch => {
+        const dot = document.getElementById(touch.identifier)
+        dot.remove()
+
+        if (Math.abs(yIndex) <  5 && Math.abs(xIndex) < 5) return;
+        if (Math.abs(yIndex)> Math.abs(xIndex)) {
+            if (yIndex < 0) {
+                slideDown();
+                setTwo();
+                setTwo();
+            } else {
+                slideUp();
+                setTwo();
+                setTwo();
+            }
+        } else {
+            if (xIndex < 0) {
+                slideRight();
+                setTwo();
+                setTwo();
+            } else {
+                slideLeft();
+                setTwo();
+                setTwo();
+            }        
+        }
+        document.getElementById("score").innerHTML = score
+    })
+})
 
 function filterZero (row) {
     return row.filter(num => num != 0); // create new array without zero
