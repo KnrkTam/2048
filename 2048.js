@@ -13,7 +13,9 @@ window.onload = function() {
     const paper = document.getElementById("paper");
         paper.addEventListener("touchstart"  , (e)=> { 
             e.preventDefault();
-            // console.log("Target", e.targetTouches.length)
+        })
+        paper.addEventListener("touchmove"  , (e)=> { 
+            e.preventDefault();
         })
 }
 
