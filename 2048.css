@@ -41,8 +41,8 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    animation: show 200ms ease-in-out;
-    transition: 200ms ease-in-out;
+    animation: show 300ms ease-in-out;
+    transition: 100ms ease-in-out;
 }
 
 @keyframes show {
