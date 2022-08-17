@@ -18,12 +18,73 @@ window.onload = function() {
         // restartBtn.classList.add("restart-btn");
     })
 
+    let startY;
+    let startX;
+    let yIndex;
+    let xIndex;
     const paper = document.getElementById("paper");
     paper.addEventListener("touchstart"  , (e)=> { 
         e.preventDefault();
     })
     paper.addEventListener("touchmove"  , (e)=> { 
         e.preventDefault();
+    })
+
+    paper.addEventListener("touchstart", (e)=> {
+        // Press one at a time
+        // console.log(e)
+        [...e.changedTouches ].forEach(touch => {
+            const dot = document.createElement("div")
+            dot.classList.add("dot")
+            startY = touch.pageY;
+            startX = touch.pageX;
+    
+            dot.style.top = `${touch.pageY}px`;
+            dot.style.left = `${touch.pageX}px`;
+            dot.id = touch.identifier;
+            paper.append(dot)
+        })
+    }) 
+    
+    paper.addEventListener("touchmove",(e) =>{
+        ;[...e.changedTouches ].forEach(touch => {
+            const dot = document.getElementById(touch.identifier)
+            dot.style.top = `${touch.pageY}px`;
+            dot.style.left = `${touch.pageX}px`;
+            yIndex = startY - touch.pageY;
+            xIndex = startX - touch.pageX;
+           
+    
+        })
+    })
+    
+    
+    paper.addEventListener("touchend", (e) =>{
+        ;[...e.changedTouches ].forEach(touch => {
+            const dot = document.getElementById(touch.identifier)
+            dot.remove()
+            
+            if (Math.abs(yIndex) <  5 && Math.abs(xIndex) < 5) return;
+            if (Math.abs(yIndex)> Math.abs(xIndex)) {
+                if (yIndex < 0) {
+                    slideDown();
+                } else {
+                    slideUp();
+                }
+                setTwo();
+            } else {
+                if (xIndex < 0) {
+                    slideRight();
+                } else {
+                    slideLeft();
+                }   
+                setTwo();     
+            }
+    
+            yIndex = null;
+            xIndex = null;
+            document.getElementById("score").innerHTML = score
+        })
     })
 }
 
@@ -106,67 +167,9 @@ document.addEventListener("keyup", (e)=> {
 
 }) 
 
-let startY;
-let startX;
-let yIndex;
-let xIndex;
-
-document.addEventListener("touchstart", (e)=> {
-    // Press one at a time
-    // console.log(e)
-    [...e.changedTouches ].forEach(touch => {
-        const dot = document.createElement("div")
-        dot.classList.add("dot")
-        startY = touch.pageY;
-        startX = touch.pageX;
-
-        dot.style.top = `${touch.pageY}px`;
-        dot.style.left = `${touch.pageX}px`;
-        dot.id = touch.identifier;
-        document.body.append(dot)
-    })
-}) 
-
-document.addEventListener("touchmove",(e) =>{
-    ;[...e.changedTouches ].forEach(touch => {
-        const dot = document.getElementById(touch.identifier)
-        dot.style.top = `${touch.pageY}px`;
-        dot.style.left = `${touch.pageX}px`;
-        yIndex = startY - touch.pageY;
-        xIndex = startX - touch.pageX;
-       
-
-    })
-})
 
 
-document.addEventListener("touchend", (e) =>{
-    ;[...e.changedTouches ].forEach(touch => {
-        const dot = document.getElementById(touch.identifier)
-        dot.remove()
-        
-        if (Math.abs(yIndex) <  5 && Math.abs(xIndex) < 5) return;
-        if (Math.abs(yIndex)> Math.abs(xIndex)) {
-            if (yIndex < 0) {
-                slideDown();
-            } else {
-                slideUp();
-            }
-            setTwo();
-        } else {
-            if (xIndex < 0) {
-                slideRight();
-            } else {
-                slideLeft();
-            }   
-            setTwo();     
-        }
 
-        yIndex = null;
-        xIndex = null;
-        document.getElementById("score").innerHTML = score
-    })
-})
 
 function filterZero (row) {
     return row.filter(num => num != 0); // create new array without zero
