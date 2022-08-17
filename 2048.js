@@ -53,8 +53,8 @@ function setGame() {
             document.getElementById("board").append(tile);
         }
     }
-    setTwo();
-    setTwo();
+    // setTwo();
+
 }
 
 
@@ -72,37 +72,36 @@ function updateTile(tile, num) {
     }
 }
 
-
+document.addEventListener("keydown", (e)=> {
+    if (e.code == 'ArrowLeft' || 
+        e.code == 'ArrowRight' || 
+        e.code == 'ArrowUp' || 
+        e.code == 'ArrowDown') {   
+        e.preventDefault();
+    }
+})
 
 document.addEventListener("keyup", (e)=> {
+    e.preventDefault();
     // Press one at a time
     switch (e.code) {
         case ("ArrowLeft"):
             slideLeft();
-            setTwo();
-            setTwo();
 
             break;
         case ("ArrowRight"):
             slideRight();
-            setTwo();
-            setTwo();
 
             break;
         case ("ArrowUp"):
             slideUp();
-            setTwo();
-            setTwo();
-
-
             break;
         case ("ArrowDown"):
             slideDown();
-            setTwo();
-            setTwo();
-
             break;
     }
+    setTwo();
+
     document.getElementById("score").innerHTML = score
 
 }) 
@@ -150,24 +149,19 @@ document.addEventListener("touchend", (e) =>{
         if (Math.abs(yIndex)> Math.abs(xIndex)) {
             if (yIndex < 0) {
                 slideDown();
-                setTwo();
-                setTwo();
             } else {
                 slideUp();
-                setTwo();
-                setTwo();
             }
+            setTwo();
         } else {
             if (xIndex < 0) {
                 slideRight();
-                setTwo();
-                setTwo();
             } else {
                 slideLeft();
-                setTwo();
-                setTwo();
-            }        
+            }   
+            setTwo();     
         }
+
         yIndex = null;
         xIndex = null;
         document.getElementById("score").innerHTML = score
