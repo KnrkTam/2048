@@ -1,7 +1,4 @@
-
-
-
-<img width="761" alt="Screenshot 2022-08-10 at 6 26 34 PM" src="https://user-images.githubusercontent.com/99338991/184031351-1f15b26a-0bb9-407b-8b6d-8fb025ac9c7f.png">
+<img width="761" alt="Screenshot 2022-08-10 at 6 26 34 PM" src="https://raw.githubusercontent.com/KnrkTam/2048/master/2048.png">
 
 
 # Description
